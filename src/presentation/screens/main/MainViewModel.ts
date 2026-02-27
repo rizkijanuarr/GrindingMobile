@@ -22,23 +22,24 @@ export const useMainViewModel = () => {
       setPostsState(UiState.success(data));
       
       // Debug response structure
-      console.log('[MainViewModel] Posts fetched successfully');
-      console.log('[MainViewModel] Response data:', JSON.stringify(data, null, 2));
+      // console.log('[MainViewModel] Posts fetched successfully');
+      // console.log('[MainViewModel] Response data:', JSON.stringify(data, null, 2));
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Terjadi kesalahan';
       setPostsState(UiState.error(message));
-      console.error('[MainViewModel] Fetch error:', message);
+      // console.error('[MainViewModel] Fetch error:', message);
     }
   }, []);
 
   // Auto-refresh saat screen focus (seperti onResume di Kotlin)
   useFocusEffect(
     React.useCallback(() => {
-      console.log('[MainViewModel] Screen focused, fetching posts...');
+      // console.log('[MainViewModel] Screen focused, fetching posts...');
       fetchPosts();
+      
       // Cleanup (optional: onPause)
       return () => {
-        console.log('[MainViewModel] Screen blurred');
+        // console.log('[MainViewModel] Screen blurred');
       };
     }, [fetchPosts])
   );

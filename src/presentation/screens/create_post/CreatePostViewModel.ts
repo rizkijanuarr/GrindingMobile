@@ -65,19 +65,19 @@ export const useCreatePostViewModel = () => {
         }
 
         // Logging (seperti NetworkModule)
-        if (__DEV__) {
-          console.log(`[HTTP POST] ${url}`);
-          console.log('[HTTP Headers]', {
-            'Content-Type': 'multipart/form-data',
-            Accept: 'application/json',
-            'ngrok-skip-browser-warning': '69420',
-          });
-          console.log('[HTTP Body] FormData (multipart):', {
-            title,
-            content,
-            image: image ? `${image.fileName} (${image.type})` : 'none',
-          });
-        }
+        // if (__DEV__) {
+        //   console.log(`[HTTP POST] ${url}`);
+        //   console.log('[HTTP Headers]', {
+        //     'Content-Type': 'multipart/form-data',
+        //     Accept: 'application/json',
+        //     'ngrok-skip-browser-warning': '69420',
+        //   });
+        //   console.log('[HTTP Body] FormData (multipart):', {
+        //     title,
+        //     content,
+        //     image: image ? `${image.fileName} (${image.type})` : 'none',
+        //   });
+        // }
 
         // Upload via rn-fetch-blob (native multipart support)
         const response = await RNFetchBlob.fetch(
@@ -94,14 +94,14 @@ export const useCreatePostViewModel = () => {
         const responseData = response.json();
 
         // Response logging (seperti NetworkModule)
-        if (__DEV__) {
-          console.log(`[HTTP Response] ${response.info().status} ${url}`);
-          console.log('[HTTP Response Data]', responseData);
-        }
+        // if (__DEV__) {
+        //   console.log(`[HTTP Response] ${response.info().status} ${url}`);
+        //   console.log('[HTTP Response Data]', responseData);
+        // }
 
         if (response.info().status === 200 || response.info().status === 201) {
           setCreateState(UiState.success(responseData));
-          return true; // Berhasil
+          return true; 
         } else {
           throw new Error(responseData?.message || 'Upload gagal');
         }
@@ -109,8 +109,8 @@ export const useCreatePostViewModel = () => {
         const message =
           error instanceof Error ? error.message : 'Gagal membuat post';
         setCreateState(UiState.error(message));
-        console.error('[CreatePostViewModel] Upload error:', message);
-        return false; // Gagal
+        // console.error('[CreatePostViewModel] Upload error:', message);
+        return false; 
       }
     },
     [title, content, image],
