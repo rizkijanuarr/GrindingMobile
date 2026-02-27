@@ -7,4 +7,8 @@ export class PostRemoteDataSource {
   async getPosts(): Promise<PostResponse> {
     return PostService.getPosts();
   }
+
+  async createPost(body: any): Promise<any> {
+    return PostService.createPost(body);
+  }
 }

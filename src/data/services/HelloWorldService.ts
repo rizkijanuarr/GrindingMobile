@@ -1,4 +1,4 @@
-// HelloWorldService: definisi API endpoints (mirip Retrofit interface di Kotlin)
+// HelloWorldService: definisi API endpoints (serupa Retrofit interface Kotlin)
 
 import { networkModule } from '../../core/network/NetworkModule';
 import type { HelloWorldResponse } from '../../domain/model/HelloWorldModel';

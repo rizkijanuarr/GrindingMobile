@@ -1,22 +1,23 @@
-// MainScreen (View): HANYA render UI
-// Semua logic di-handle oleh MainViewModel
-
 import React from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   TouchableOpacity,
   ActivityIndicator,
   FlatList,
 } from 'react-native';
-import { useMainViewModel } from './MainViewModel';
-import { Colors, Spacing, FontSize } from '../../theme';
-import { FontFamily } from '../../../core/common/Constant';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { RootStackParamList } from '../../navigation/types';
 import type { Post } from '../../../domain/model/PostModel';
+import { useMainViewModel } from './MainViewModel';
+import { styles } from './MainStyle';
+import { Colors } from '../../theme';
 
 const MainScreen = () => {
   const { postsState, fetchPosts } = useMainViewModel();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const renderPost = ({ item }: { item: Post }) => (
     <View style={styles.postCard}>
@@ -66,7 +67,7 @@ const MainScreen = () => {
           </View>
 
           <FlatList
-            data={postsState.data.data.data}
+            data={postsState.data?.data?.data ?? postsState.data?.data ?? []}
             keyExtractor={item => item.id.toString()}
             renderItem={renderPost}
             ListEmptyComponent={renderEmpty}
@@ -76,89 +77,16 @@ const MainScreen = () => {
           />
         </>
       )}
+
+      {/* Floating Action Button */}
+      <TouchableOpacity
+        style={styles.fab}
+        onPress={() => navigation.navigate('CreatePost')}
+      >
+        <Text style={styles.fabText}>+</Text>
+      </TouchableOpacity>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.background,
-  },
-  centerContent: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: Spacing.lg,
-  },
-  header: {
-    padding: Spacing.lg,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.border,
-  },
-  title: {
-    fontSize: FontSize.xxl,
-    fontFamily: FontFamily.bold,
-    color: Colors.text,
-  },
-  subtitle: {
-    fontSize: FontSize.sm,
-    fontFamily: FontFamily.regular,
-    color: Colors.textSecondary,
-    marginTop: Spacing.xs,
-  },
-  listContent: {
-    padding: Spacing.md,
-    flexGrow: 1,
-  },
-  postCard: {
-    backgroundColor: '#F9F9F9',
-    borderRadius: 8,
-    padding: Spacing.md,
-    marginBottom: Spacing.sm,
-    borderWidth: 1,
-    borderColor: Colors.border,
-  },
-  postTitle: {
-    fontSize: FontSize.lg,
-    fontFamily: FontFamily.semiBold,
-    color: Colors.text,
-    marginBottom: Spacing.xs,
-  },
-  postContent: {
-    fontSize: FontSize.md,
-    fontFamily: FontFamily.regular,
-    color: Colors.textSecondary,
-  },
-  emptyContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: Spacing.xl,
-  },
-  emptyText: {
-    fontSize: FontSize.lg,
-    fontFamily: FontFamily.medium,
-    color: Colors.textSecondary,
-  },
-  error: {
-    fontSize: FontSize.md,
-    fontFamily: FontFamily.regular,
-    color: Colors.error,
-    marginBottom: Spacing.lg,
-    textAlign: 'center',
-  },
-  button: {
-    backgroundColor: Colors.primary,
-    paddingHorizontal: Spacing.lg,
-    paddingVertical: Spacing.md,
-    borderRadius: 8,
-  },
-  buttonText: {
-    color: '#fff',
-    fontFamily: FontFamily.semiBold,
-    fontSize: FontSize.lg,
-  },
-});
 
 export default MainScreen;

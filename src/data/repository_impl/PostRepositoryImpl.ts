@@ -14,4 +14,8 @@ export class PostRepositoryImpl implements PostRepository {
   async getPosts(): Promise<PostResponse> {
     return this.remoteDataSource.getPosts();
   }
+
+  async createPost(body: any): Promise<any> {
+    return this.remoteDataSource.createPost(body);
+  }
 }

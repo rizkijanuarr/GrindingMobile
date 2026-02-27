@@ -1,24 +1,22 @@
-// NetworkModule: Setup HTTP client yang dipake seluruh app
-// Serupa dengan Dagger Hilt NetworkModule di Kotlin
-// Kotlin: OkHttpClient + Retrofit + Interceptors + Chucker
-// React Native: fetch + Interceptors + Reactotron (debug)
+// NetworkModule: Setup HTTP client yang dipakai di seluruh app!
+// Serupa dengan Dagger Hilt NetworkModule
 
-import {BASE_URL} from '../common/Constant';
+import { BASE_URL } from '../common/Constant';
 import {
   requestInterceptor,
   handleNetworkError,
   responseInterceptor,
   setTokenGetter,
 } from './ResponseInterceptor';
-import {checkResponseJson} from './ResponseJsonChecker';
+import { checkResponseJson } from './ResponseJsonChecker';
 
-const TIME_OUT = 60000; 
-const IS_DEBUG = __DEV__; 
+const TIME_OUT = 60000;
+const IS_DEBUG = __DEV__;
 
 interface RequestConfig {
   method?: string;
   headers?: Record<string, string>;
-  body?: string;
+  body?: any;
   requiresAuth?: boolean;
 }
 
@@ -41,51 +39,70 @@ class NetworkModule {
   async request<T>(endpoint: string, config: RequestConfig = {}): Promise<T> {
     const url = `${this.baseUrl}${endpoint}`;
 
+    // Handle FormData vs JSON body
+    const isFormData = config.body instanceof FormData;
+    const headers: Record<string, string> = {
+      ...config.headers,
+    };
+
+    if (!isFormData) {
+      headers['Content-Type'] = 'application/json';
+    }
+
+    headers['Accept'] = 'application/json';
+    headers['ngrok-skip-browser-warning'] = '69420'; // Optional : Bypass ngrok
+
     // 1. Request Interceptor: inject auth token
-    const headers = requestInterceptor(
-      {
-        'Content-Type': 'application/json',
-        ...config.headers,
-      },
+    const finalHeaders = requestInterceptor(
+      headers,
       config.requiresAuth ?? false,
     );
 
-    // 2. Logging (HttpLoggingInterceptor.Level.BODY)
+    // 2. Prepare body
+    let requestBody: any = config.body;
+    if (!isFormData && config.body) {
+      requestBody = JSON.stringify(config.body);
+    }
+
+    // 3. Logging
     if (IS_DEBUG) {
       console.log(`[HTTP ${config.method || 'GET'}] ${url}`);
+      console.log('[HTTP Headers]', finalHeaders);
       if (config.body) {
-        console.log('[HTTP Body]', config.body);
+        console.log('[HTTP Body]', isFormData ? 'FormData (files attached)' : config.body);
       }
     }
 
-    // 3. Fetch dengan timeout
-    let response: Response;
+    // 4. Native Fetch Request (support FormData natively)
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), this.timeOut);
 
+    let response: Response;
     try {
       response = await fetch(url, {
         method: config.method || 'GET',
-        headers,
-        body: config.body,
+        headers: finalHeaders,
+        body: requestBody,
         signal: controller.signal,
       });
     } catch (error) {
+      console.error('[HTTP Fetch Error]', error);
       handleNetworkError(error);
+      throw error;
     } finally {
       clearTimeout(timeoutId);
     }
 
-    // 4. Debug logging response (serupa Chucker di Kotlin)
+    // 5. Debug logging response
     if (IS_DEBUG) {
-      console.log(`[HTTP Response] ${response!.status} ${url}`);
+      console.log(`[HTTP Response] - ${response.status} ${url}`);
     }
 
-    // 5. Response Interceptor: cek HTTP status
-    responseInterceptor(response!);
+    // 6. Response Interceptor: HTTP status
+    responseInterceptor(response);
 
-    // 6. Parse JSON
-    const json = await checkResponseJson<T>(response!);
+    // 7. Parse JSON
+    const json = await checkResponseJson<T>(response);
 
     return json;
   }

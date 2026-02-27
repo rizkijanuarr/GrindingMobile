@@ -6,8 +6,3 @@ export enum HttpMethod {
   PUT = 'PUT',
   DELETE = 'DELETE',
 }
-
-export enum ScreenName {
-  Main = 'Main',
-  Detail = 'Detail',
-}

@@ -1,6 +1,5 @@
 // ResponseJsonChecker: Validasi & convert response body ke JSON
-// Serupa dengan Retrofit Converter.Factory di Kotlin
-// Intercept response, coba parse, log error kalau gagal
+// Serupa dengan Retrofit Converter.Factory Kotlin
 
 export const checkResponseJson = async <T>(response: Response): Promise<T> => {
   try {
@@ -9,7 +8,7 @@ export const checkResponseJson = async <T>(response: Response): Promise<T> => {
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : 'Unknown error';
-    console.error('CompanyCORP', `error: ${JSON.stringify(errorMessage)}`);
+    console.error('Company Name', `error: ${JSON.stringify(errorMessage)}`);
     throw new Error(errorMessage);
   }
 };

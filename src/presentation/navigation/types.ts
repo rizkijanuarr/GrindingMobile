@@ -1,4 +1,5 @@
 export type RootStackParamList = {
   Main: undefined;
-  Detail: {message: string};
+  Detail: { message: string };
+  CreatePost: undefined;
 };

@@ -1,7 +1,7 @@
 // Constant yang dipakai di seluruh app
 
 export const BASE_URL =
-  'https://a5ea-2a09-bac5-3a1e-25d7-00-3c5-48.ngrok-free.app/api/v1';
+  'https://5d90-2a09-bac1-3480-50-00-3c1-45.ngrok-free.app/api/v1';
 
 export const FontFamily = {
   regular: 'Poppins-Regular',

@@ -1,5 +1,4 @@
-// Remote Data Source: tempat panggil API beneran
-// Pakai Service layer untuk define endpoint
+// Remote Data Source: tempat panggil real API
 
 import type {HelloWorldResponse} from '../../domain/model/HelloWorldModel';
 import {HelloWorldService} from '../services/HelloWorldService';

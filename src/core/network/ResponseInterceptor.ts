@@ -1,5 +1,5 @@
 // ResponseInterceptor: Intercept semua request & response
-// Serupa dengan OkHttp Interceptor di Kotlin
+// Serupa dengan OkHttp Interceptor Kotlin
 // - Inject Auth token ke header
 // - Handle network errors (timeout, no connection, dll)
 // - Handle HTTP status errors (400, 401, 500, dll)
