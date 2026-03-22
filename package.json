@@ -8,7 +8,9 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "postinstall": "patch-package"
+    "rename": "npx react-native-rename",
+    "generate-splash": "react-native generate-bootsplash assets/bootsplash/logo.png --background=\"#FFFFFF\" --logo-width=100",
+    "generate-icon": "npx app-icon generate -i assets/bootsplash/logo.png"
   },
   "dependencies": {
     "@react-native/new-app-screen": "0.84.0",
@@ -20,7 +22,7 @@
     "react-native-image-picker": "^8.2.1",
     "react-native-safe-area-context": "^5.7.0",
     "react-native-screens": "^4.24.0",
-    "rn-fetch-blob": "^0.12.0"
+    "zustand": "^5.0.12"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
@@ -38,7 +40,6 @@
     "@types/react-test-renderer": "^19.1.0",
     "eslint": "^8.19.0",
     "jest": "^29.6.3",
-    "patch-package": "^8.0.1",
     "prettier": "2.8.8",
     "react-test-renderer": "19.2.3",
     "typescript": "^5.8.3"
