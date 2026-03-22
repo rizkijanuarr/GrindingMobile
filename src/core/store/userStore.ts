@@ -1,6 +1,3 @@
-// userStore: global state untuk data profil user yang sedang login
-// Diisi setelah fetch /user-info berhasil
-
 import { create } from 'zustand';
 
 interface User {

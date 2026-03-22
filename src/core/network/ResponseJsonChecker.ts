@@ -1,6 +1,3 @@
-// ResponseJsonChecker: Validasi & convert response body ke JSON
-// Serupa dengan Retrofit Converter.Factory Kotlin
-
 export const checkResponseJson = async <T>(response: Response): Promise<T> => {
   try {
     const json: T = await response.json();

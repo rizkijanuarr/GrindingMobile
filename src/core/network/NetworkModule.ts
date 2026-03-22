@@ -1,6 +1,3 @@
-// NetworkModule: Setup HTTP client yang dipakai di seluruh app!
-// Serupa dengan Dagger Hilt NetworkModule
-
 import { BASE_URL } from '../common/Constant';
 import {
   requestInterceptor,

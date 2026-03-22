@@ -1,7 +1,3 @@
-// useHelloWorld: ViewModel hook untuk HelloWorld feature
-// UseCase dihilangkan karena tidak ada bisnis logic (hanya passthrough)
-// Repository dipanggil langsung dari sini
-
 import { useState, useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { UiState } from '../../core/common/UiState';

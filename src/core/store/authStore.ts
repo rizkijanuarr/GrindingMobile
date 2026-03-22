@@ -1,6 +1,3 @@
-// authStore: global state untuk autentikasi
-// Menyimpan token, status login, dan data user yang sedang login
-
 import { create } from 'zustand';
 
 interface AuthState {

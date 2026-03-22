@@ -1,12 +1,5 @@
-// ResponseInterceptor: Intercept semua request & response
-// Serupa dengan OkHttp Interceptor Kotlin
-// - Inject Auth token ke header
-// - Handle network errors (timeout, no connection, dll)
-// - Handle HTTP status errors (400, 401, 500, dll)
+import { ErrorMessage } from '../common/Constant';
 
-import {ErrorMessage} from '../common/Constant';
-
-// ---- Token getter (di-set dari luar, misal dari auth module) ----
 let getToken: (() => string) | null = null;
 
 export const setTokenGetter = (getter: () => string) => {
@@ -18,7 +11,7 @@ export const requestInterceptor = (
   headers: Record<string, string>,
   requiresAuth: boolean,
 ): Record<string, string> => {
-  const newHeaders = {...headers};
+  const newHeaders = { ...headers };
 
   if (requiresAuth && getToken) {
     const token = getToken();

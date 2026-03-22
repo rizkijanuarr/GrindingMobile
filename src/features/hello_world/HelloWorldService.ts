@@ -1,6 +1,3 @@
-// HelloWorldService: definisi API endpoint
-// Serupa Retrofit interface Kotlin
-
 import type { HelloWorldResponse } from './HelloWorldModel';
 
 export const HelloWorldService = {
