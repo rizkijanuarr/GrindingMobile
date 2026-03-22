@@ -21,12 +21,12 @@ bun run rename "GoFood Clone" -b "com.gojek.gofoodclone"
 
 ---
 
-## 2. Ganti Splash Screen
+## 2. Ganti Splash Screen Level Native
 Boilerplate ini menggunakan `react-native-bootsplash`.
 
 **Cara Ganti:**
 1. Siapkan logo aplikasi berformat `.png` berukuran besar (misal: 1024x1024 px).
-2. Replace (timpa) file logo yang ada di `assets/bootsplash/logo.png`.
+2. Replace (timpa) file logo yang ada di `assets/splash/logo.png`.
 3. Jalankan perintah ini:
    ```bash
    bun run generate-splash
@@ -40,7 +40,7 @@ Boilerplate ini menggunakan `react-native-bootsplash`.
 Ubah juga App Icon (icon aplikasi yang tampil di homescreen HP) dengan 1 langkah mudah.
 
 **Cara Ganti:**
-Logo yang kamu letakkan di `assets/bootsplash/logo.png` juga bisa digunakan sebagai App Icon. Jika kamu punya logo icon khusus, pastikan namanya/pathnya sesuai, lalu jalankan:
+Logo yang kamu letakkan di `assets/splash/logo.png` juga bisa digunakan sebagai App Icon. Jika kamu punya logo icon khusus, pastikan namanya/pathnya sesuai, lalu jalankan:
 
 ```bash
 bun run generate-icon

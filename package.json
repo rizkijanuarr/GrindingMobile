@@ -3,14 +3,22 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "// === 🚀 1. COMMAND UTAMA (JALANKAN APLIKASI) ===": "",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
+    "lint": "eslint .",
+    "// === 🎨 2. CUSTOMIZATION BOILERPLATE ===": "",
     "rename": "npx react-native-rename",
-    "generate-splash": "react-native generate-bootsplash assets/bootsplash/logo.png --background=\"#FFFFFF\" --logo-width=100",
-    "generate-icon": "npx app-icon generate -i assets/bootsplash/logo.png"
+    "generate-splash": "react-native generate-bootsplash assets/splash/logo.png --background=\"#FFFFFF\" --logo-width=100",
+    "generate-icon": "npx app-icon generate -i assets/splash/logo.png",
+    "// === 🍎 3. IOS COCOAPODS SETUP ===": "",
+    "pod": "bundle install && cd ios && bundle exec pod install --repo-update && cd ..",
+    "pod:clean": "cd ios && rm -rf Pods Podfile.lock && cd .. && bundle install && cd ios && bundle exec pod install --repo-update && cd ..",
+    "// === 🛠 4. UTILITY & FIXER ===": "",
+    "fix": "rm -rf node_modules && bun install && bun run pod",
+    "postinstall": "bun run pod"
   },
   "dependencies": {
     "@react-native/new-app-screen": "0.84.0",
