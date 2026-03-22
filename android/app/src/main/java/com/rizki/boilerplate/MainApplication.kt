@@ -1,4 +1,4 @@
-package com.grindingmobile
+package com.rizki.boilerplate
 
 import android.app.Application
 import com.chuckerteam.chucker.api.ChuckerInterceptor

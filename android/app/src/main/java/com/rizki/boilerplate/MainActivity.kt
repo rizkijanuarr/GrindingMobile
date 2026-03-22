@@ -1,4 +1,4 @@
-package com.grindingmobile
+package com.rizki.boilerplate
 
 import android.os.Bundle
 import com.facebook.react.ReactActivity
@@ -14,7 +14,7 @@ class MainActivity : ReactActivity() {
     super.onCreate(savedInstanceState)
   }
 
-  override fun getMainComponentName(): String = "GrindingMobile"
+  override fun getMainComponentName(): String = "Boilerplate"
 
   override fun createReactActivityDelegate(): ReactActivityDelegate =
     DefaultReactActivityDelegate(this, mainComponentName, fabricEnabled)

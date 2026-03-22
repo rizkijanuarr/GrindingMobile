@@ -16,9 +16,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.grindingmobile"
+    namespace "com.rizki.boilerplate"
     defaultConfig {
-        applicationId "com.grindingmobile"
+        applicationId "com.rizki.boilerplate"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
