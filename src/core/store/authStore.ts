@@ -1,4 +1,5 @@
-import { create } from 'zustand';
+import { create } from "..";
+
 
 interface AuthState {
     token: string | null;
