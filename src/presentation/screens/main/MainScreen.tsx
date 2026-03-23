@@ -5,9 +5,9 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
-import { HelloWorldViewModel } from '../../../features/hello_world/HelloWorldViewModel';
+import { HelloWorldViewModel } from '../../../features/hello_world';
+import { Colors } from '../../../core';
 import { styles } from './MainStyle';
-import { Colors } from '../../theme';
 
 const MainScreen = () => {
   const { helloWorldState, fetchHelloWorld } = HelloWorldViewModel();

@@ -1,4 +1,5 @@
-import type { HelloWorldResponse } from './HelloWorldModel';
+import { type HelloWorldResponse } from '..';
+
 
 export const HelloWorldService = {
     getHelloWorld: (): Promise<HelloWorldResponse> => {

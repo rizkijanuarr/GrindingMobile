@@ -1,5 +1,4 @@
-import type { HelloWorldResponse } from './HelloWorldModel';
-import { HelloWorldService } from './HelloWorldService';
+import { type HelloWorldResponse, HelloWorldService } from '..';
 
 class HelloWorldRepository {
     async getHelloWorld(): Promise<HelloWorldResponse> {

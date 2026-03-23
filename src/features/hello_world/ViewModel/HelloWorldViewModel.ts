@@ -1,9 +1,8 @@
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import { UiState } from '../../core/common/UiState';
-import { helloWorldRepository } from './HelloWorldRepository';
-import type { HelloWorldResponse } from './HelloWorldModel';
-import React from 'react';
+import { UiState } from '../../../core';
+import { helloWorldRepository, type HelloWorldResponse } from '..';
+
 
 export const HelloWorldViewModel = () => {
     const [helloWorldState, setHelloWorldState] = useState<UiState<HelloWorldResponse>>(

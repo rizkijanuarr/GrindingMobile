@@ -1,11 +1,12 @@
-import { BASE_URL } from '../common/Constant';
+import { BASE_URL } from '..';
 import {
   requestInterceptor,
   handleNetworkError,
   responseInterceptor,
   setTokenGetter,
-} from './ResponseInterceptor';
-import { checkResponseJson } from './ResponseJsonChecker';
+  checkResponseJson,
+} from '.';
+
 
 const TIME_OUT = 60000;
 const IS_DEBUG = __DEV__;
